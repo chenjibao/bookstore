@@ -5,6 +5,7 @@ public class User {
 	private String username;//用户名
 	private String password;//密码
 	private String email;//邮箱
+	private String code;//激活码
 	private boolean state;//用户状态，已激活和未激活
 	
 	public String getUid() {
@@ -38,18 +39,27 @@ public class User {
 		this.state = state;
 	}
 	
-	@Override
-	public String toString() {
-		return "User [uid=" + uid + ", username=" + username + ", password=" + password + ", email=" + email
-				+ ", state=" + state + "]";
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}
 	
-	public User(String uid, String username, String password, String email, boolean state) {
+	
+	@Override
+	public String toString() {
+		return "User [uid=" + uid + ", username=" + username + ", password=" + password + ", email=" + email + ", code="
+				+ code + ", state=" + state + "]";
+	}
+	
+	public User(String uid, String username, String password, String email, String code, boolean state) {
 		super();
 		this.uid = uid;
 		this.username = username;
 		this.password = password;
 		this.email = email;
+		this.code = code;
 		this.state = state;
 	}
 	public User() {
