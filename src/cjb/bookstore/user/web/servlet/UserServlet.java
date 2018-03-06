@@ -86,7 +86,7 @@ public class UserServlet extends BaseServlet {
 			//1.保存错误信息
 			//2.保存表单数据
 			//3.转发到regist.jsp 
-			request.setAttribute("error",errors);
+			request.setAttribute("errors",errors);
 			request.setAttribute("form", form);
 			return "f:/jsps/user/regist.jsp";
 		}

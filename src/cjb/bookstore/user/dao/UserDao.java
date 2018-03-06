@@ -21,6 +21,7 @@ public class UserDao {
 			String sql="select * from tb_user where username=?";
 			return qr.query(sql, new BeanHandler<User>(User.class), username);
 		} catch (SQLException e) {
+	
 			throw new RuntimeException(e);
 		}
 	}
