@@ -39,6 +39,34 @@ public class UserDao {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	/**
+	 * 按激活码查询
+	 * @param code
+	 * @return
+	 */
+	public User findByCode(String code){
+		try {
+			String sql="select * from tb_user where code=?";
+			return qr.query(sql, new BeanHandler<User>(User.class), code);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	/**
+	 * 修改指定用户的状态
+	 * @param uid
+	 * @param state
+	 */
+	public void updateState(String uid,boolean state){
+		try {
+			String sql="update tb_user set state=? where uid=?";
+			 qr.update(sql, state, uid);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
 	/**
 	 * 插入user
 	 * @param user

@@ -31,8 +31,20 @@ public class UserServlet extends BaseServlet {
 	 * @throws IOException
 	 */
 	public String active(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("您激活了");
-		return null;
+		/**
+		 * 1.获取参数激活码
+		 * 2、调用service方法完成激活
+		 * 	  （1）发生异常：保存异常信息到request域转发到msg.jsp
+		 *   （2）激活成功:保存成功信息到request域转发到msg.jsp
+		 */
+		String code=request.getParameter("code");
+		try {
+			userService.active(code);
+			request.setAttribute("msg", "恭喜，您激活成功了，请马上登陆！");
+		} catch (UserException e) {
+			request.setAttribute("msg", e.getMessage());
+		}
+		return "f:/jsps/msg.jsp";
 	}
 	
 	/**
@@ -116,7 +128,7 @@ public class UserServlet extends BaseServlet {
 				getResourceAsStream("email_template.properties"));
 		String host=props.getProperty("host");//获取服务器主机
 		String uname=props.getProperty("uname");//获取用户名
-		String pwd=props.getProperty("pwd");//获取密码
+		String pwd=props.getProperty("pwd");//获取授权密码（从自己的邮箱获取客户端授权密码，不是自己邮箱的登录密码）
 		String from =props.getProperty("from");//获取发件人
 		String to=form.getEmail();//获取收件人
 		String subject =props.getProperty("subject");//获取邮件主题
