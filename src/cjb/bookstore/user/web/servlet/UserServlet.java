@@ -122,15 +122,20 @@ public class UserServlet extends BaseServlet {
 		String subject =props.getProperty("subject");//获取邮件主题
 		String content =props.getProperty("content");//获取邮件内容
 		content=MessageFormat.format(content, form.getCode());//替换{0}
+		
 		Session session=MailUtils.createSession(host, uname, pwd);//得到Session
+		
 		Mail mail=new Mail(from, to, subject, content);//创建邮件对象
+		
 		//发邮件
+		System.out.println("准备发邮件");
 		try {
 			MailUtils.send(session, mail);
+			System.out.println("正在发邮件");
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println("邮件发送失败");
 		}
-		
+		System.out.println("恭喜你，注册成功！请马上到邮箱激活");
 		request.setAttribute("msg", "恭喜你，注册成功！请马上到邮箱激活");
 		return "f:/jsps/msg.jsp";
 		
