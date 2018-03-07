@@ -21,7 +21,19 @@ import cn.itcast.servlet.BaseServlet;
 
 public class UserServlet extends BaseServlet {
 	private UserService userService=new UserService();
+	/**
+	 * 退出功能
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String quit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().invalidate();
 	
+		return "r:/index.jsp";
+	}
 	/**
 	 * 激活功能
 	 * @param request
