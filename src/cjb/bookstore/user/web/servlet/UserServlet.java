@@ -55,6 +55,7 @@ public class UserServlet extends BaseServlet {
 	 * @throws IOException
 	 */
 	public String regist(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		//封装表单数据
 		User form=CommonUtils.toBean(request.getParameterMap(), User.class);
 		
@@ -152,5 +153,32 @@ public class UserServlet extends BaseServlet {
 		return "f:/jsps/msg.jsp";
 		
 		
+	}
+	/**
+	 * 登录功能
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		/**
+		 * 1、封装表单数据到form中
+		 * 2、调用service方法完成注册
+		 * 		（1）如果跑出异常，保存错误信息到request域，保存form到request域中转发到login.jsp;
+		 * 		（2）如果注册成功，保存用户信息到session中， 重定向到主页index.jsp
+		 */
+		User form = CommonUtils.toBean(request.getParameterMap(), User.class);
+		try {
+			User user = userService.login(form);
+			request.getSession().setAttribute("session_user", user);
+			return "r:/index.jsp";
+		} catch (UserException e) {
+			request.setAttribute("msg", e.getMessage());
+			request.setAttribute("form", form);
+			return "f:/jsps/user/login.jsp";
+		}
 	}
 }
