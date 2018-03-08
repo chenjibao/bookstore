@@ -21,6 +21,38 @@ public class BookServlet extends BaseServlet {
 	 */
 	public String findAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("bookList", bookService.findAll());
-		return "f:/jsps/book/list.jsp";
+		return "f:/jsps/book/list.jsp";   
+	}
+	/**
+	 * 加载
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String load(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*
+		 * 得到bid
+		 * 查询得到book
+		 * 保存到request域
+		 * 转发到desc.jsp
+		 */
+		request.setAttribute("book",bookService.load(request.getParameter("bid")));
+		return "f:/jsps/book/desc.jsp";   
+	}
+	
+	/**
+	 * 按分类查询图书
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String findByCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String cid=request.getParameter("cid");
+		request.setAttribute("bookList", bookService.findByCategory(cid));
+		return "f:/jsps/book/list.jsp";   
 	}
 }

@@ -14,5 +14,16 @@ public class BookService {
 	public List<Book> findAll(){
 		return bookDao.findAll();
 	}
+	/**
+	 * 按分类查询
+	 * @param cid
+	 * @return
+	 */
+	public List<Book> findByCategory(String cid) {
+		return bookDao.findByCategory(cid);
+	}
+	public Book load(String bid) {
+		return bookDao.findByBid(bid);
+	}
 
 }
