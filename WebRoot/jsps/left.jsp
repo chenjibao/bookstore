@@ -37,15 +37,17 @@
 	<a href="<c:url value='/jsps/book/list.jsp'/>">全部分类</a>
 </div>
 
-
+<%-- <c:forEach items="${categoryList} " var="category">
 <div>
-	<a href="<c:url value='/jsps/book/list.jsp'/>">JavaSE分类</a>
+	
+	<a href="<c:url value='/jsps/book/list.jsp'/>">${category.cname }</a>
 </div>
+</c:forEach>
+--%>
+<c:forEach items="${categoryList }" var="category">
 <div>
-	<a href="<c:url value='/jsps/book/list.jsp'/>">JavaEE分类</a>
+	<a href="<c:url value='/jsps/book/list.jsp'/>">${category.cname }</a>
 </div>
-<div>
-	<a href="<c:url value='/jsps/book/list.jsp'/>">Javascript分类</a>
-</div>
+</c:forEach>
   </body>
 </html>
