@@ -1,6 +1,7 @@
 package cjb.bookstore.order.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import cjb.bookstore.user.domain.User;
 
@@ -12,7 +13,14 @@ public class Order {
 	private int state;//订单状态有4种：1、未付款2、已付款但未发货3、已发货但未确认收货4、已经确认交易成功
 	private User owner;//订单所有者
 	private String address;//收货地址
+	private List<OrderItem> orderItemList ;//当前订单下所有条目
 	
+	public List<OrderItem> getOrderItemList() {
+		return orderItemList;
+	}
+	public void setOrderItemList(List<OrderItem> orderItemList) {
+		this.orderItemList = orderItemList;
+	}
 	public String getOid() {
 		return oid;
 	}

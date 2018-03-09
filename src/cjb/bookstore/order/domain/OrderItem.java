@@ -11,14 +11,7 @@ public class OrderItem {
 	private Order order;//所属订单
 	private Book book;//要购买的图书
 	
-	private List<OrderItem> orderItemList ;//当前订单下所有条目
 	
-	public List<OrderItem> getOrderItemList() {
-		return orderItemList;
-	}
-	public void setOrderItemList(List<OrderItem> orderItemList) {
-		this.orderItemList = orderItemList;
-	}
 	public String getIid() {
 		return iid;
 	}
