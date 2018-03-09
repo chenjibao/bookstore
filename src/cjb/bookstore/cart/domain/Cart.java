@@ -37,7 +37,9 @@ public class Cart {
 	 * 清空购物车
 	 */
 	public void clear(){
+		System.out.println("已经清空购物车了");
 		map.clear();
+		System.out.println(map.size());
 	}
 	
 	/**

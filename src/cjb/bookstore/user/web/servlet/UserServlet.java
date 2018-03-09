@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cjb.bookstore.cart.domain.Cart;
 import cjb.bookstore.user.domain.User;
 import cjb.bookstore.user.service.UserException;
 import cjb.bookstore.user.service.UserService;
@@ -186,6 +187,8 @@ public class UserServlet extends BaseServlet {
 		try {
 			User user = userService.login(form);
 			request.getSession().setAttribute("session_user", user);
+			//登录成功后就要给客户发一辆购物车
+			request.getSession().setAttribute("cart", new Cart());
 			return "r:/index.jsp";
 		} catch (UserException e) {
 			request.setAttribute("msg", e.getMessage());
