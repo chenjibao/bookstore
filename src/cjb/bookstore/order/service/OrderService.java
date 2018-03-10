@@ -1,6 +1,7 @@
 package cjb.bookstore.order.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import cjb.bookstore.order.dao.OrderDao;
 import cjb.bookstore.order.domain.Order;
@@ -30,5 +31,34 @@ public class OrderService {
 			}
 			throw new RuntimeException(e);
 		}
+	}
+	/**
+	 * 我的订单
+	 * @param uid
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<Order> myOrders(String uid) throws SQLException {
+		return orderDao.findByUid(uid);
+	}
+	/**
+	 * 加载订单
+	 * @param oid
+	 * @return
+	 */
+	public Order load(String oid) {
+		return orderDao.load(oid);
+	}
+	/**
+	 * 确认收货
+	 * @param oid
+	 * @throws OrderException
+	 */
+	public void confirm(String oid)throws OrderException{
+		//校验订单状态，如果不是3，抛出异常
+		int state =orderDao.getStateByOid(oid);
+		if(state!=3)throw new OrderException("订单确认失败！");
+		
+		orderDao.updateState(4, oid);
 	}
 }
