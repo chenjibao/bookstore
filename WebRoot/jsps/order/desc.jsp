@@ -75,7 +75,9 @@
 </table>
 <br/>
 
-<form method="post" action="javascript:alert('别点了，再点就去银行页面了！');" id="form" target="_parent">
+<form method="post" action="<c:url value='/OrderServlet'/>" id="form" target="_parent">
+	<input type="hidden" name="method" value="pay"/>
+	<input type="hidden" name="oid" value="${order.oid }"/>
 	收货地址：<input type="text" name="address" size="50" value="北京市海淀区金燕龙大厦2楼216室无敌收"/><br/>
 
 	选择银行：<br/>
