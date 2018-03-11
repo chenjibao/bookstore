@@ -202,5 +202,70 @@ public class OrderServlet extends BaseServlet {
 
 		return null;
 	}
+	
+	/**
+	 * 易宝回调方法
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String back(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		/*
+		 * 1. 获取11 + 1
+		 */
+		String p1_MerId = request.getParameter("p1_MerId");
+		String r0_Cmd = request.getParameter("r0_Cmd");
+		String r1_Code = request.getParameter("r1_Code");
+		String r2_TrxId = request.getParameter("r2_TrxId");
+		String r3_Amt = request.getParameter("r3_Amt");
+		String r4_Cur = request.getParameter("r4_Cur");
+		String r5_Pid = request.getParameter("r5_Pid");
+		String r6_Order = request.getParameter("r6_Order");
+		String r7_Uid = request.getParameter("r7_Uid");
+		String r8_MP = request.getParameter("r8_MP");
+		String r9_BType = request.getParameter("r9_BType");
 
+		String hmac = request.getParameter("hmac");
+
+		/*
+		 * 2. 校验访问者是否为易宝！
+		 */
+		Properties props = new Properties();
+		InputStream input = this.getClass().getClassLoader()
+				.getResourceAsStream("merchantInfo.properties");
+		props.load(input);
+		String keyValue = props.getProperty("keyValue");
+
+		boolean bool = PaymentUtil.verifyCallback(hmac, p1_MerId, r0_Cmd,
+				r1_Code, r2_TrxId, r3_Amt, r4_Cur, r5_Pid, r6_Order, r7_Uid,
+				r8_MP, r9_BType, keyValue);
+		
+		if(!bool) {//如果校验失败
+			request.setAttribute("msg", "您不是什么好东西！");
+			return "f:/jsps/msg.jsp";
+		}
+		
+		/*
+		 * 3. 获取状态订单，确定是否要修改订单状态，以及添加积分等业务操作
+		 */
+		orderService.pay(r6_Order);//有可能对数据库进行操作，也可能不操作！
+		
+		/*
+		 * 4. 判断当前回调方式
+		 *   如果为点对点，需要回馈以success开头的字符串
+		 */
+		if(r9_BType.equals("2")) {
+			response.getWriter().print("success");
+		}
+		
+		/*
+		 * 5. 保存成功信息，转发到msg.jsp
+		 */
+		request.setAttribute("msg", "支付成功！等待卖家发货！你慢慢等~");
+		return "f:/jsps/msg.jsp";
+	}
 }

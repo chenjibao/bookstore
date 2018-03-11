@@ -61,4 +61,19 @@ public class OrderService {
 		
 		orderDao.updateState(4, oid);
 	}
+	
+	/**
+	 * 支付方法
+	 * @param oid
+	 */
+	public void pay(String oid){
+		/*
+		 * 获取订单状态
+		 * 如果订单状态为1就执行下面内容，否则什么都不做
+		 */
+		int state =orderDao.getStateByOid(oid);
+		if(state==1){
+			orderDao.updateState(2, oid);
+		}
+	}
 }
