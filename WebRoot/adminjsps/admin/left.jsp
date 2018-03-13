@@ -17,12 +17,22 @@
 	<script type="text/javascript" src="<c:url value='/menu/mymenu.js'/>"></script>
 	<link rel="stylesheet" href="<c:url value='/menu/mymenu.css'/>" type="text/css" media="all">
 <script language="javascript">
+/*
+ * 第一个参数必须与对象名相同
+ */
 var bar1 = new Q6MenuBar("bar1", "二飞书城");
 function load() {
-	bar1.colorStyle = 2;
+	//配色方案共有四种：0、1、2、3
+	bar1.colorStyle = 3;
 	bar1.config.imgDir = "<c:url value='/menu/img/'/>";
+	//菜单之间是否相互排斥
 	bar1.config.radioButton=false;
-	bar1.add("分类管理", "查看分类", "<c:url value='/adminjsps/admin/category/list.jsp'/>", "body");
+	/*
+	添加菜单和菜单项：分类管理(菜单) 查看分类（菜单项）
+	"<c:url value='/adminjsps/admin/category/list.jsp'/>"  单击菜单项时要请求的地址
+	body:结果显示在哪个框架页的名称
+	*/
+	bar1.add("分类管理", "查看分类", "<c:url value='/admin/AdminCategoryServlet?method=findAll'/>", "body");
 	bar1.add("分类管理", "添加分类", "<c:url value='/adminjsps/admin/category/add.jsp'/>", "body");
 
 	bar1.add("图书管理", "查看图书", "<c:url value='/adminjsps/admin/book/list.jsp'/>", "body");
@@ -33,8 +43,9 @@ function load() {
 	bar1.add("订单管理", "已付款订单", "<c:url value='/adminjsps/admin/order/list.jsp'/>", "body");
 	bar1.add("订单管理", "未收货订单", "<c:url value='/adminjsps/admin/order/list.jsp'/>", "body");
 	bar1.add("订单管理", "已完成订单", "<c:url value='/adminjsps/admin/order/list.jsp'/>", "body");
-
+	//获取div元素
 	var d = document.getElementById("menu");
+	//把菜单对象转换为字符串给div元素做内容
 	d.innerHTML = bar1.toString();
 }
 </script>

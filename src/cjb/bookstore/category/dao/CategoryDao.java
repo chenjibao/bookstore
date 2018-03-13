@@ -7,6 +7,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import cjb.bookstore.category.domain.Category;
+import cjb.bookstore.category.web.servlet.admin.CategoryException;
 import cn.itcast.jdbc.TxQueryRunner;
 
 public class CategoryDao {
@@ -20,6 +21,30 @@ public class CategoryDao {
 		String sql="select * from category";
 		try {
 			return qr.query(sql, new BeanListHandler<Category>(Category.class));
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	/**
+	 * 添加分类
+	 * @param category
+	 */
+	public void add(Category category) {
+		String sql="insert into category values(?,?)";
+		try {
+			qr.update(sql, category.getCid(),category.getCname());
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	/**
+	 * 删除分类
+	 * @param cid
+	 */
+	public void delete(String cid)  {
+		String sql="delete from category where cid=?";
+		try {
+			qr.update(sql, cid);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
