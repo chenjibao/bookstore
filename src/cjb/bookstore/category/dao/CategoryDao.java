@@ -49,6 +49,11 @@ public class CategoryDao {
 			throw new RuntimeException(e);
 		}
 	}
+	/**
+	 * 按cid查询分类
+	 * @param cid
+	 * @return
+	 */
 	public Category findById(String cid) {
 		String sql="select * from category where cid=?";
 		try {
@@ -57,6 +62,10 @@ public class CategoryDao {
 			throw new RuntimeException(e);
 		}
 	}
+	/**
+	 * 修改分类
+	 * @param category
+	 */
 	public void edit(Category category) {
 		String sql="update category set cname=? where cid=?";
 		try {
