@@ -63,5 +63,43 @@ public class AdminCategoryServlet extends BaseServlet {
 			return "/adminjsps/msg.jsp";
 		}
 	}
+	
+	/**
+	 * 修改分类之前
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String editPre(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			String cid=request.getParameter("cid");
+			Category category=categoryService.getCategoryById(cid);
+			request.setAttribute("category", category);
+			return "f:/adminjsps/admin/category/mod.jsp";
+		} catch (CategoryException e) {
+			request.setAttribute("msg", e.getMessage());
+			return "/adminjsps/msg.jsp";
+		}
+	}
+	/**
+	 * 修改分类
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			Category category=CommonUtils.toBean(request.getParameterMap(), Category.class);
+			categoryService.edit(category);
+			return findAll(request,response);
+		} catch (CategoryException e) {
+			request.setAttribute("msg", e.getMessage());
+			return "/adminjsps/msg.jsp";
+		}
+	}
 
 }

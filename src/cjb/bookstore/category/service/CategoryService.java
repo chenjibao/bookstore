@@ -36,4 +36,16 @@ public class CategoryService {
 		//删除图书
 		categoryDao.delete(cid);
 	}
+	public Category getCategoryById(String cid) throws CategoryException{
+		return categoryDao.findById(cid);
+	}
+	/**
+	 * 修改分类
+	 * @param category
+	 */
+	public void edit(Category category) throws CategoryException{
+		Category category2=categoryDao.findById(category.getCid());
+		if(category2==null)throw new CategoryException("不存在该分类，您的服务器后端代码错误！");
+		categoryDao.edit(category);
+	}
 }
