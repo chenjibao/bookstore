@@ -14,6 +14,21 @@ import cn.itcast.servlet.BaseServlet;
 public class AdminCategoryServlet extends BaseServlet {
 	private CategoryService categoryService=new CategoryService();
 	/**
+	 * 添加分类
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Category category=CommonUtils.toBean(request.getParameterMap(), Category.class);
+		category.setCid(CommonUtils.uuid());
+		categoryService.add(category);
+		return findAll(request, response);
+	}
+	
+	/**
 	 * 查询所有分类
 	 * @param request
 	 * @param response
@@ -29,20 +44,6 @@ public class AdminCategoryServlet extends BaseServlet {
 		request.setAttribute("categoryList", categoryService.findAll());
 		return "f:/adminjsps/admin/category/list.jsp";
 		
-	}
-	/**
-	 * 添加分类
-	 * @param request
-	 * @param response
-	 * @return
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	public String add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Category category=CommonUtils.toBean(request.getParameterMap(), Category.class);
-		category.setCid(CommonUtils.uuid());
-		categoryService.add(category);
-		return findAll(request, response);
 	}
 	
 	/**

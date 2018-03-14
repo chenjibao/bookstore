@@ -55,7 +55,7 @@
 <h1>当前订单</h1>
 
 <table border="1" width="100%" cellspacing="0" background="black">
-	<tr bgcolor="gray" bordercolor="gray">
+	<tr bgcolor="yellow" bordercolor="gray">
 		<td colspan="6">
 			订单编号：${order.oid }　成交时间：<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${order.ordertime }"/> 　金额：<font color="red"><b>${order.total }元</b></font>
 		</td>

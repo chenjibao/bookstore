@@ -21,6 +21,10 @@
 			font-size:10pt;
 			text-align: center;
 		}
+		body {
+			font-size: 10pt;
+			background: #FFCC99;
+	    }
 		div {
 			background: #87CEFA; 
 			margin: 3px; 

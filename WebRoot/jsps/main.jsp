@@ -23,9 +23,10 @@
 		}
 		body{
 			text-align:center;
+			
 		}
 		.table{
-			width:1024px;
+			width:100%;
 			height:100%;
 			border:1px solid gray;/*固定边框,1像素*/
 		    border-collapse: collapse;/*单线的列表边框*/
@@ -49,7 +50,7 @@
 	</tr>
 	<tr>
 		<td width="120" style="padding:5px;" align="center" valign="top">
-			<iframe frameborder="0" width="120" src="<c:url value='/CategoryServlet?method=findAll'/>" name="left"></iframe>
+			<iframe frameborder="0" width="180" src="<c:url value='/CategoryServlet?method=findAll'/>" name="left"></iframe>
 		</td>
 		<td>
 			<iframe frameborder="0" src="<c:url value='/jsps/body.jsp'/>" name="body"></iframe>

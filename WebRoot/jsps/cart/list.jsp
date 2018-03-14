@@ -78,13 +78,13 @@
 	</tr>
 <c:forEach items="${sessionScope.cart.cartItems }" var="cartItem">
 	<tr>
-		<td><div><img src="<c:url value='/${cartItem.book.image } '/>"/></div></td>
-		<td>${cartItem.book.bname }</td>
-		<td>${cartItem.book.author }</td>
-		<td>${cartItem.book.price }元</td>
-		<td>${cartItem.count }</td>
-		<td>${cartItem.subTotal }元</td>
-		<td><a href="<c:url value='/CartServlet?method=delete&bid=${cartItem.book.bid }  '/>">删除</a></td>
+		<td align="middle"><div><img src="<c:url value='/${cartItem.book.image } '/>" /></div></td>
+		<td align="middle">${cartItem.book.bname }</td>
+		<td align="middle">${cartItem.book.author }</td>
+		<td align="middle">${cartItem.book.price }元</td>
+		<td align="middle">${cartItem.count }</td>
+		<td align="middle">${cartItem.subTotal }元</td>
+		<td align="middle"><a href="<c:url value='/CartServlet?method=delete&bid=${cartItem.book.bid }  '/>">删除</a></td>
 	</tr>
 </c:forEach>
 

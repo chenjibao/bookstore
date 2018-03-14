@@ -11,18 +11,20 @@ public class CategoryService {
 	private CategoryDao categoryDao=new CategoryDao();
 	private BookDao bookDao=new BookDao();
 	/**
-	 * 查询所有分类
-	 * @return
-	 */
-	public List<Category> findAll(){
-		return categoryDao.findAll();
-	}
-	/**
 	 * 添加分类
 	 * @param category
 	 */
 	public void add(Category category) {
 		categoryDao.add(category);
+	}
+	
+	
+	/**
+	 * 查询所有分类
+	 * @return
+	 */
+	public List<Category> findAll(){
+		return categoryDao.findAll();
 	}
 	/**
 	 * 删除分类

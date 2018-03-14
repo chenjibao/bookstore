@@ -18,7 +18,7 @@
 	-->
 <style type="text/css">
 	body {
-		font-size: 10pt;
+		background: #FFCCFF； 
 	}
 	div {
 		margin:20px;

@@ -62,7 +62,7 @@
 	<c:otherwise>
 <table border="1" width="100%" cellspacing="0" background="black">
 <c:forEach items="${orderList }" var="order">
-	<tr bgcolor="gray" bordercolor="gray">
+	<tr bgcolor="yellow" bordercolor="gray">
 		<td colspan="6">
 			订单：${order.oid }　成交时间：<fmt:formatDate value="${order.ordertime}" pattern="yyyy-MM-dd HH:mm"/>　金额：<font color="red"><b>${order.total }</b></font>　
 				<c:choose>

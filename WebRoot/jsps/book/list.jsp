@@ -18,6 +18,7 @@
 <style type="text/css">
 	body {
 		font-size: 10pt;
+		background: #FFCCFF;
 	}
 	.icon {
 		margin:10px;

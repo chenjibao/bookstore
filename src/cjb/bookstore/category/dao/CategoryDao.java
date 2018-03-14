@@ -12,6 +12,18 @@ import cn.itcast.jdbc.TxQueryRunner;
 
 public class CategoryDao {
 	private QueryRunner qr=new TxQueryRunner();
+	/**
+	 * 添加分类
+	 * @param category
+	 */
+	public void add(Category category) {
+		String sql="insert into category values(?,?)";
+		try {
+			qr.update(sql, category.getCid(),category.getCname());
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 	/**
 	 * 查询所有分类
@@ -21,18 +33,6 @@ public class CategoryDao {
 		String sql="select * from category";
 		try {
 			return qr.query(sql, new BeanListHandler<Category>(Category.class));
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-	}
-	/**
-	 * 添加分类
-	 * @param category
-	 */
-	public void add(Category category) {
-		String sql="insert into category values(?,?)";
-		try {
-			qr.update(sql, category.getCid(),category.getCname());
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
