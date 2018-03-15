@@ -11,12 +11,12 @@ import cjb.bookstore.book.service.BookService;
 import cjb.bookstore.category.domain.Category;
 import cjb.bookstore.category.service.CategoryService;
 import cn.itcast.commons.CommonUtils;
+import cjb.bookstore.category.service.CategoryService;
 import cn.itcast.servlet.BaseServlet;
 
 public class AdminBookServlet extends BaseServlet {
 	private BookService bookService=new BookService();
 	private CategoryService categoryService=new CategoryService();
-	
 	/**
 	 * 加载分类
 	 * @param request
@@ -30,7 +30,6 @@ public class AdminBookServlet extends BaseServlet {
 		request.setAttribute("categoryList", categoryService.findAll());
 		return "f:/adminjsps/admin/book/add.jsp";
 	}
-	
 	/**
 	 * 查看所有图书
 	 * @param request
@@ -59,7 +58,6 @@ public class AdminBookServlet extends BaseServlet {
 		request.setAttribute("book", book);
 		return "f:/adminjsps/admin/book/desc.jsp";
 	}
-	
 	/**
 	 *删除图书
 	 * @param request
