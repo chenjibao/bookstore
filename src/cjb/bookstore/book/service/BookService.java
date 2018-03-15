@@ -34,4 +34,7 @@ public class BookService {
 	public void delete(String bid){
 		bookDao.delete(bid);
 	}
+	public void edit(Book book) {
+		bookDao.edit(book);
+	}
 }
