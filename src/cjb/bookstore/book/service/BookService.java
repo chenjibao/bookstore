@@ -25,5 +25,13 @@ public class BookService {
 	public Book load(String bid) {
 		return bookDao.findByBid(bid);
 	}
-
+	public void add(Book book) {
+		bookDao.add(book);
+	}
+	/**
+	 * 删除图书
+	 */
+	public void delete(String bid){
+		bookDao.delete(bid);
+	}
 }

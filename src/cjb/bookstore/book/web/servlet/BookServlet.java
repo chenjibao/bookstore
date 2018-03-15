@@ -55,4 +55,7 @@ public class BookServlet extends BaseServlet {
 		request.setAttribute("bookList", bookService.findByCategory(cid));
 		return "f:/jsps/book/list.jsp";   
 	}
+	
+	
+	
 }

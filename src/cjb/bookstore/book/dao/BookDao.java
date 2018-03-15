@@ -21,7 +21,7 @@ public class BookDao {
 	 * @return
 	 */
 	public List<Book> findAll(){
-		String sql ="select * from  book";
+		String sql ="select * from  book where del=false";
 		try {
 			return qr.query(sql, new BeanListHandler<Book>(Book.class));
 		} catch (SQLException e) {
@@ -34,7 +34,7 @@ public class BookDao {
 	 * @return
 	 */
 	public List<Book> findByCategory(String cid) {
-		String sql ="select * from  book where cid=?";
+		String sql ="select * from  book where cid=? and del=false";
 		try {
 			return qr.query(sql, new BeanListHandler<Book>(Book.class),cid);
 		} catch (SQLException e) {
@@ -48,7 +48,7 @@ public class BookDao {
 	 * @return Book
 	 */
 	public Book findByBid(String bid) {
-		String sql ="select * from  book where bid=?";
+		String sql ="select * from  book where bid=? and del=false";
 		try {
 			//需要在book对象中保存category的信息
 			Map<String,Object> map=qr.query(sql, new MapHandler(), bid);
@@ -64,9 +64,34 @@ public class BookDao {
 	//查询指定分类下的图书本数
 	public int getCountByCid(String cid) {
 		try {
-			String sql="SELECT COUNT(*) FROM book WHERE cid=?";
+			String sql="SELECT COUNT(*) FROM book WHERE cid=? and del=false";
 			Number cnt=(Number)qr.query(sql, new ScalarHandler(),cid);
 			return cnt.intValue();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	/**
+	 * 添加图书
+	 * @param book
+	 */
+	public void add(Book book) {
+		String sql="insert book values(?,?,?,?,?,?,?)";
+		Object [] params={book.getBid(),book.getBname(),book.getPrice(),book.getAuthor(),book.getImage(),book.getCategory().getCid(),false};
+		try {
+			qr.update(sql,params);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	/**
+	 * 删除图书
+	 * @param bid
+	 */
+	public void delete(String bid){
+		String sql="update book set del=true where bid=?";
+		try {
+			qr.update(sql, bid);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

@@ -70,7 +70,7 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>AdminAddBookServlet</servlet-name>
-    <url-pattern>/AdminAddBookServlet</url-pattern>
+    <url-pattern>/admin/AdminAddBookServlet</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
