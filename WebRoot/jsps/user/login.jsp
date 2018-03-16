@@ -17,17 +17,55 @@
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
+ <style type="text/css">
+  body {
+	background-image: url(<c:url value='/images/background.jpg'/>);
+}
+  </style>
   </head>
   
-  <body>
-  <h1>登录</h1>
-<p style="color: red; font-weight: 900">${msg }</p>
+ <p style="color: red; font-weight: 900">${msg }</p>
+<p style="color: red; font-weight: 900">&nbsp;</p>
+<p style="color: red; font-weight: 900">&nbsp;</p>
+<p style="color: red; font-weight: 900">&nbsp;</p>
+<p style="color: red; font-weight: 900">&nbsp;</p>
+<p style="color: red; font-weight: 900">&nbsp;</p>
+<p style="color: red; font-weight: 900">&nbsp;</p>
 <form action="<c:url value='/UserServlet'/>" method="post" target="_top">
-	<input type="hidden" name="method" value="login" />
-	用户名：<input type="text" name="username" value="${form.username} "/><br/>
-	密　码：<input type="password" name="password" value="${form.password}"/><br/>
-	<input type="submit" value="登录"/>&nbsp;<a href="<c:url value='/jsps/user/regist.jsp'/>" target="_parent">注册</a>
+	<blockquote>
+	  <blockquote>
+	    <blockquote>
+	      <blockquote>
+	        <blockquote>
+	          <blockquote>
+	            <blockquote>
+	              <blockquote>
+	                <blockquote>
+	                  <blockquote>
+	                    <blockquote>
+	                      <blockquote>
+	                        <blockquote>
+	                          <blockquote>
+	                          <input type="hidden" name="method" value="login"/>
+	                                                                       用户名<input type="text" name="username" value="${form.username} "/><br/>
+	                              
+	                                                                        密&nbsp;&nbsp;&nbsp;码<input type="password" name="password" value="${form.password}"/><br/>
+	                              
+                                <input type="submit" value="登录"/>&nbsp;<a href="<c:url value='/jsps/user/regist.jsp'/>" target="_parent">注册</a></p>
+                              </blockquote>
+                            </blockquote>
+                          </blockquote>
+                        </blockquote>
+                      </blockquote>
+                    </blockquote>
+                  </blockquote>
+                </blockquote>
+              </blockquote>
+            </blockquote>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+  </blockquote>
 </form>
-  </body>
+</body>
 </html>
