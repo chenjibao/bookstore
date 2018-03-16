@@ -52,6 +52,9 @@
 =======
   <form style="margin:20px;" id="form" action="javascript:alert('操作成功！');" method="post">
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> refs/remotes/origin/master
+=======
 >>>>>>> refs/remotes/origin/master
 =======
 >>>>>>> refs/remotes/origin/master
@@ -65,9 +68,12 @@
     </select><br/>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   	<input type="submit"  value="删除" onclick="setMethod('delete');"/>
   	<input type="submit"  value="编辑" onclick="setMethod('edit');"/>
 =======
+=======
+>>>>>>> refs/remotes/origin/master
 =======
 >>>>>>> refs/remotes/origin/master
   	<input type="submit" name="method" value="del" onclick="return confirm('是否真要删除该图书？');"/>
