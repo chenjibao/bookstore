@@ -16,6 +16,20 @@ public class AdminBookServlet extends BaseServlet {
 	private BookService bookService=new BookService();
 	private CategoryService categoryService=new CategoryService();
 	/**
+	 * 删除图书
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String delete(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String bid = request.getParameter("bid");
+		bookService.delete(bid);
+		return findAll(request, response);
+	}
+	/**
 	 * 添加图书
 	 * @param request
 	 * @param response
