@@ -27,7 +27,7 @@
 	<input type="hidden" name="method" value="login" />
 	用户名：<input type="text" name="username" value="${form.username} "/><br/>
 	密　码：<input type="password" name="password" value="${form.password}"/><br/>
-	<input type="submit" value="登录"/>
+	<input type="submit" value="登录"/>&nbsp;<a href="<c:url value='/jsps/user/regist.jsp'/>" target="_parent">注册</a>
 </form>
   </body>
 </html>
