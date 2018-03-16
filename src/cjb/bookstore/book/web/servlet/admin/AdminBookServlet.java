@@ -9,12 +9,31 @@ import javax.servlet.http.HttpServletResponse;
 
 import cjb.bookstore.book.domain.Book;
 import cjb.bookstore.book.service.BookService;
+import cjb.bookstore.category.domain.Category;
 import cjb.bookstore.category.service.CategoryService;
+import cn.itcast.commons.CommonUtils;
 import cn.itcast.servlet.BaseServlet;
 
 public class AdminBookServlet extends BaseServlet {
 	private BookService bookService=new BookService();
 	private CategoryService categoryService=new CategoryService();
+	/**
+	 * 修改图书
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String edit(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		Book book = CommonUtils.toBean(request.getParameterMap(), Book.class);
+		Category category = CommonUtils.toBean(request.getParameterMap(), Category.class);
+		book.setCategory(category);
+		
+		bookService.edit(book);
+		return findAll(request, response);
+	}
 	/**
 	 * 删除图书
 	 * @param request
