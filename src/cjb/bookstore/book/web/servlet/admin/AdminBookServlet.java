@@ -16,6 +16,23 @@ public class AdminBookServlet extends BaseServlet {
 	private BookService bookService=new BookService();
 	private CategoryService categoryService=new CategoryService();
 	/**
+	 * 添加图书
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String addPre(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		/*
+		 * 查询所有分类，保存到request，转发到add.jsp
+		 * add.jsp中把所有的分类使用下拉列表显示在表单中
+		 */
+		request.setAttribute("categoryList", categoryService.findAll());
+		return "f:/adminjsps/admin/book/add.jsp";
+	}
+	/**
 	 * 查看所有图书
 	 * @param request
 	 * @param response
